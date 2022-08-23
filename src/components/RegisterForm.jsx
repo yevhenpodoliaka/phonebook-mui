@@ -1,7 +1,39 @@
-import { Box,  Button,  TextField } from '@mui/material';
+import { useState } from 'react';
+import { Box, Button, TextField } from '@mui/material';
 import { Container } from '@mui/system';
+import {registerUser} from '../service/authApi'
 
 export default function RegisterForm() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  
+  const handleChange = ({ target: { name, value } }) => {
+    switch (name) {
+      case 'name':
+        return setName(value);
+      case 'email':
+        return setEmail(value);
+      case 'password':
+        return setPassword(value);
+      default:
+        return;
+    }
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log('submit')
+    if (!name || !email || !password) {
+      return;
+    }
+   registerUser({ name, email, password })
+      setName('');
+      setEmail('');
+      setPassword('');
+
+  };
     return (
       <Container maxWidth="sm">
         <Box
@@ -14,11 +46,30 @@ export default function RegisterForm() {
             gap: '16px',
             padding: '16px',
           }}
+          onSubmit={handleSubmit}
         >
-          <TextField required id="outlined-required" label="Name" />
-          <TextField required id="outlined-required" label="Email" />
-          <TextField required id="outlined-required" label="Password" />
-          <Button>sign up</Button>
+          <TextField
+            required
+            value={name}
+            name="name"
+            label="Name"
+            onChange={handleChange}
+          />
+          <TextField
+            required
+            value={email}
+            name="email"
+            label="Email"
+            onChange={handleChange}
+          />
+          <TextField
+            required
+            value={password}
+            name="password"
+            label="Password"
+            onChange={handleChange}
+          />
+          <Button type='submit'>sign up</Button>
         </Box>
       </Container>
     );

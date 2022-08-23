@@ -1,7 +1,33 @@
-import { Box,  Button,  TextField } from '@mui/material';
+import { useState } from 'react';
+import { Box, Button, TextField } from '@mui/material';
 import { Container } from '@mui/system';
+import { logInUser } from 'service/authApi';
 
 export default function LoginForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+    const handleChange = ({ target: { name, value } }) => {
+      switch (name) {
+        case 'email':
+          return setEmail(value);
+        case 'password':
+          return setPassword(value);
+        default:
+          return;
+      }
+    };
+
+    const handleSubmit = e => {
+      e.preventDefault();
+      if (!email || !password) {
+        return;
+      }
+      logInUser({ email, password })
+      setEmail('');
+      setPassword('');
+    };
+
     return (
       <Container maxWidth="sm">
         <Box
@@ -14,10 +40,23 @@ export default function LoginForm() {
             gap: '16px',
             padding: '16px',
           }}
+          onSubmit={handleSubmit}
         >
-          <TextField required id="outlined-required" label="Email" />
-          <TextField required id="outlined-required" label="Password" />
-          <Button>log in</Button>
+          <TextField
+            required
+            value={email}
+            name="email"
+            label="Email"
+            onChange={handleChange}
+          />
+          <TextField
+            required
+            value={password}
+            name="password"
+            label="Password"
+            onChange={handleChange}
+          />
+          <Button type="submit">log in</Button>
         </Box>
       </Container>
     );
