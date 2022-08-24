@@ -26,7 +26,7 @@ export default function RegisterForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('submit')
+   
     if (!name || !email || !password) {
       return;
     }

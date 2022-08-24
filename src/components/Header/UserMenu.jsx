@@ -7,7 +7,7 @@ export default function UserMenu() {
   const { username, logOut } = useUser()
   
   const handelClick = () => {
-    logOutUser().then(data => {
+    logOutUser().then(()=> {
       logOut()
     }).catch(console.log)
   }
