@@ -2,10 +2,13 @@ import { useState } from 'react';
 import { Box, Button, TextField } from '@mui/material';
 import { Container } from '@mui/system';
 import { logInUser } from 'service/authApi';
+import {useUser} from '../userContext'
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+const {logIn}=useUser()
 
     const handleChange = ({ target: { name, value } }) => {
       switch (name) {
@@ -23,8 +26,14 @@ export default function LoginForm() {
       if (!email || !password) {
         return;
       }
-      logInUser({ email, password })
+      logInUser({ email, password }).then(({user,token}) => {
+       
+    logIn(user.name,token)
+    
+
+      })
       setEmail('');
+
       setPassword('');
     };
 

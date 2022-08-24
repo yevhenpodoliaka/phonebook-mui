@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { Box, Button, TextField } from '@mui/material';
 import { Container } from '@mui/system';
-import {registerUser} from '../service/authApi'
+import { registerUser } from '../service/authApi'
+import {useUser} from '../userContext'
 
 export default function RegisterForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const {  logIn } = useUser();
   
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -28,7 +30,12 @@ export default function RegisterForm() {
     if (!name || !email || !password) {
       return;
     }
-   registerUser({ name, email, password })
+    registerUser({ name, email, password })
+      .then(data => {
+       logIn();
+      })
+      .catch(console.log);
+    
       setName('');
       setEmail('');
       setPassword('');
