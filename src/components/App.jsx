@@ -4,7 +4,8 @@ import Layout from './Layout';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import { useUser } from '../userContext';
-import{fetchCurrentUser} from '../service/authApi'
+import { fetchCurrentUser } from '../service/authApi'
+import Contacts from 'pages/Contacts';
 
 
 
@@ -50,7 +51,7 @@ export const App = () => {
               )
             }
           />
-          <Route path="contacts" element={<div>contacts</div>} />
+          <Route path="contacts" element={<Contacts/>} />
         </Route>
       </Routes>
     </>
