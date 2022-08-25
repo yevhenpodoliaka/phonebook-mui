@@ -31,9 +31,7 @@ export default function RegisterForm() {
       return;
     }
     registerUser({ name, email, password })
-      .then(data => {
-       logIn();
-      })
+      .then(({ user, token }) => logIn(user.name, token))
       .catch(console.log);
     
       setName('');
@@ -71,12 +69,13 @@ export default function RegisterForm() {
           />
           <TextField
             required
+            type="password"
             value={password}
             name="password"
             label="Password"
             onChange={handleChange}
           />
-          <Button type='submit'>sign up</Button>
+          <Button type="submit">sign up</Button>
         </Box>
       </Container>
     );

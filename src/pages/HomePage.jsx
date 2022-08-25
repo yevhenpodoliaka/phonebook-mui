@@ -1,6 +1,6 @@
-import { NavLink } from 'react-router-dom';
 import { Container } from '@mui/system';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import NavLinkButton from 'components/NavLinkButton/NavLinkButton';
 
 export default function HomePage() {
   return (
@@ -9,12 +9,8 @@ export default function HomePage() {
         you need to register or login
       </Typography>
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-        <Button component={NavLink} to="login" sx={{}} variant="contained">
-          Log in
-        </Button>
-        <Button component={NavLink} to="register" sx={{}} variant="contained">
-          Sign up
-        </Button>
+        <NavLinkButton to="login" text="log in" />
+        <NavLinkButton to="register" text=" Sign up" />
       </Box>
     </Container>
   );

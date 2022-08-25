@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import {
   Paper,
-  Container,
+
   Typography,
   List,
   ListItem,
@@ -21,11 +21,11 @@ export default function ContactList() {
     fetchContacts();
   }, []);
   return (
-    <Container maxWidth="sm">
+    
       <Paper elevation={3}>
         <List>
           {contacts?.map(({ id, name, number }) => (
-            <ListItem key={id} sx={{ justifyContent: 'space-between' ,gap:2}}>
+            <ListItem key={id} sx={{ justifyContent: 'space-between', gap: 2 }}>
               <Box>
                 <Typography variant="body1" component="p">
                   {name}
@@ -46,6 +46,6 @@ export default function ContactList() {
           ))}
         </List>
       </Paper>
-    </Container>
+ 
   );
 }

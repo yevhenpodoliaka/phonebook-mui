@@ -4,30 +4,27 @@ import Layout from './Layout';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import { useUser } from '../userContext';
-import { fetchCurrentUser } from '../service/authApi'
+import { fetchCurrentUser } from '../service/authApi';
 
 import HomePage from 'pages/HomePage';
 import PhoneBookPage from 'pages/PhoneBookPage';
-
-
+import ContactForm from '../components/ContactForm'
+import ContactList from '../components/ContactList';
 
 
 export const App = () => {
-   const { isLoggedIn, userToken, refreshUser } = useUser();
+  const { isLoggedIn, userToken, refreshUser } = useUser();
   useEffect(() => {
     const fetchUser = () => {
-      fetchCurrentUser(userToken).then(({name}) => {
-        refreshUser(name)
+      fetchCurrentUser(userToken).then(({ name }) => {
+        refreshUser(name);
       });
-    }
+    };
     if (userToken !== '') {
-       fetchUser();
+      fetchUser();
     }
-  
- },[refreshUser, userToken])
- 
+  }, [refreshUser, userToken]);
 
- 
   return (
     <>
       <Routes>
@@ -71,7 +68,10 @@ export const App = () => {
                 <Navigate to="/" replace={true} />
               )
             }
-          />
+          >
+            <Route index="contacts" element={<ContactList />} />
+            <Route path="add" element={<ContactForm />} />
+          </Route>
         </Route>
       </Routes>
     </>

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-import useLocalStorage from 'hooks/useLockalStorage';
+import useLocalStorage from 'hooks/useLocalStorage';
 const UserContext = createContext();
 
 export const useUser = () => useContext(UserContext);
@@ -7,7 +7,7 @@ export const useUser = () => useContext(UserContext);
 export const UserProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState(null);
-  const[userToken,setUserToken]=useLocalStorage('token','')
+  const [userToken, setUserToken] = useLocalStorage('token', '');
 
   const logIn = (name,token) => {
     setIsLoggedIn(true);
@@ -18,7 +18,7 @@ export const UserProvider = ({ children }) => {
   const logOut = () => {
     setIsLoggedIn(false);
     setUsername(null);
-    setUserToken('')
+    setUserToken('');
   };
   const refreshUser = (name) => {
      setIsLoggedIn(true);
