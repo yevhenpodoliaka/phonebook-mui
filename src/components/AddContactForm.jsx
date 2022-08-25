@@ -6,7 +6,7 @@ import {
   DialogTitle,
   DialogContent,
   DialogContentText,
-  DialogActions,
+
 } from '@mui/material';
 import { Container } from '@mui/system';
 import useLocalStorage from '../hooks/useLockalStorage';
@@ -34,12 +34,13 @@ export default function AddContactForm() {
   const handleClose = () => {
     setOpen(false);
   };
-  const handleAddContact = () => {
-    addContact({name,number});
-      setName('')
-      setNumber('')
-      setOpen(false);
-    };
+  const handleSubmit = e => {
+    e.preventDefault();
+    addContact({ name, number });
+    setName('');
+    setNumber('');
+    setOpen(false);
+  };
 
   return (
     <Container maxWidth="sm" sx={{ paddingY: 2 }}>
@@ -48,31 +49,33 @@ export default function AddContactForm() {
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add Contact</DialogTitle>
-        <DialogContent sx={{display:'flex',flexDirection:'column' ,gap:2}}>
+        <DialogContent
+          onSubmit={handleSubmit}
+          sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
+          as="form"
+        >
           <DialogContentText>
             Enter name and phone number for new contact
           </DialogContentText>
           <TextField
             required
-            type='text'
+            type="text"
             value={name}
             name="name"
-            label="name"
+            label="Name"
             onChange={handleChange}
           />
           <TextField
             required
-            type='tel'
+            type="tel"
             value={number}
             name="number"
-            label="number"
+            label="Phone number"
             onChange={handleChange}
           />
+
+          <Button type="submit">add contact</Button>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleAddContact}>add contact</Button>
-        </DialogActions>
       </Dialog>
     </Container>
   );
