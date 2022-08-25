@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/phonebook-mui/static/js/main.bad29347.js",
+    "main.js": "/phonebook-mui/static/js/main.fc73a953.js",
     "index.html": "/phonebook-mui/index.html",
-    "main.bad29347.js.map": "/phonebook-mui/static/js/main.bad29347.js.map"
+    "main.fc73a953.js.map": "/phonebook-mui/static/js/main.fc73a953.js.map"
   },
   "entrypoints": [
-    "static/js/main.bad29347.js"
+    "static/js/main.fc73a953.js"
   ]
 }
