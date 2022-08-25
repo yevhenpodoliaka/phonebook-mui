@@ -18,5 +18,14 @@ export const deleteContact = async (id) => {
   }
 };
 
+export const addContact= async credentials => {
+  try {
+    const { data } = await axios.post('/contacts', credentials);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
 

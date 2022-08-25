@@ -11,7 +11,7 @@ import {
 
 import { getContacts, deleteContact } from '../service/contactsApi';
 
-export default function Contacts() {
+export default function ContactList() {
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {

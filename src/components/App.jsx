@@ -5,8 +5,9 @@ import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import { useUser } from '../userContext';
 import { fetchCurrentUser } from '../service/authApi'
-import Contacts from './Contacts';
+
 import HomePage from 'pages/HomePage';
+import PhoneBookPage from 'pages/PhoneBookPage';
 
 
 
@@ -31,13 +32,16 @@ export const App = () => {
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index="/" element={
+          <Route
+            index="/"
+            element={
               isLoggedIn ? (
                 <Navigate to="/contacts" replace={true} />
               ) : (
                 <HomePage />
               )
-            } />
+            }
+          />
           <Route
             path="login"
             element={
@@ -58,7 +62,16 @@ export const App = () => {
               )
             }
           />
-          <Route path="contacts" element={isLoggedIn?<Contacts/>: <Navigate to="/" replace={true}/> } />
+          <Route
+            path="contacts"
+            element={
+              isLoggedIn ? (
+                <PhoneBookPage />
+              ) : (
+                <Navigate to="/" replace={true} />
+              )
+            }
+          />
         </Route>
       </Routes>
     </>
